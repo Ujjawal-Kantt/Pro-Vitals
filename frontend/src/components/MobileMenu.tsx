@@ -1,52 +1,115 @@
-import React from 'react';
-import { Menu, X } from 'lucide-react';
-
+// MobileMenu.tsx
+import React from "react";
+import { Menu, X } from "lucide-react";
+import rightArrow from "../assets/vectors/rightarrow.png";
 interface MobileMenuProps {
   isOpen: boolean;
   onToggle: () => void;
 }
-
 export function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
   return (
     <div className="md:hidden">
-      <button 
-        onClick={onToggle} 
+      <button
+        onClick={onToggle}
         className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-        aria-label="Toggle menu"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
-      
+
       {isOpen && (
-        <div className="fixed inset-x-0 top-[64px] bg-white shadow-lg z-50 max-h-[calc(100vh-64px)] overflow-y-auto">
-          <nav className="flex flex-col p-4 space-y-3">
-            <a href="#" className="px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-gray-900 transition-colors">
-              List your practice
-            </a>
-            <a href="#" className="px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-gray-900 transition-colors">
-              For Employers
-            </a>
-            <a href="#" className="px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-gray-900 transition-colors">
-              Courses
-            </a>
-            <a href="#" className="px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-gray-900 transition-colors">
-              Books
-            </a>
-            <a href="#" className="px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-gray-900 transition-colors">
-              Speakers
-            </a>
-            <a href="#" className="px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-gray-900 transition-colors">
-              Doctors
-            </a>
-            <div className="pt-2 space-y-3">
-              <a href="#" className="block w-full text-center px-3 py-2 text-blue-500 hover:text-blue-600 transition-colors">
-                Login
-              </a>
-              <a href="#" className="block w-full text-center px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
-                Sign up
-              </a>
+        <div className="fixed inset-0 bg-white z-50">
+          <div className="flex flex-col h-full">
+            {/* Header */}
+            {/* Header */}
+            <div className="p-4 flex justify-end items-center border-b">
+              <button onClick={onToggle}>
+                <X className="w-6 h-6" />
+              </button>
             </div>
-          </nav>
+
+            {/* Menu Items */}
+            <div className="flex-1 overflow-y-auto">
+              {/* Auth Section Container */}
+              <div className="border border-gray-200 p-8 mb-8">
+                {/* Doctor Section */}
+                <div className="flex justify-between items-center p-3 hover:bg-white rounded-lg mb-3">
+                  <span className="font-semibold text-gray-900">Doctor</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-[#4384E6] underline">Login</span>
+                    <span className="text-[#4384E6] underline">Signup</span>
+                    <img src={rightArrow} alt="arrow" className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Patient Section */}
+                <div className="flex justify-between items-center p-3 hover:bg-white rounded-lg">
+                  <span className="font-semibold text-gray-900">Patient</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-[#4384E6] underline">Login</span>
+                    <span className="text-[#4384E6] underline">Signup</span>
+                    <img src={rightArrow} alt="arrow" className="w-5 h-5" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Links */}
+              <div className="p-4 space-y-4">
+                <a
+                  href="#"
+                  className="flex justify-between font-semibold items-center p-3 hover:bg-gray-50 rounded-lg"
+                >
+                  <span>List your practice</span>
+                  <img src={rightArrow} alt="arrow" className="w-5 h-5" />
+                </a>
+                <div className="border-t border-gray-200" />
+
+                {/* Repeat for other menu items */}
+                <a
+                  href="#"
+                  className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg font-semibold "
+                >
+                  <span>For Employers</span>
+                  <img src={rightArrow} alt="arrow" className="w-5 h-5" />
+                </a>
+                <div className="border-t border-gray-200" />
+
+                <a
+                  href="#"
+                  className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg font-semibold"
+                >
+                  <span>Courses</span>
+                  <img src={rightArrow} alt="arrow" className="w-5 h-5" />
+                </a>
+                <div className="border-t border-gray-200" />
+
+                <a
+                  href="#"
+                  className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg font-semibold"
+                >
+                  <span>Books</span>
+                  <img src={rightArrow} alt="arrow" className="w-5 h-5" />
+                </a>
+                <div className="border-t border-gray-200" />
+
+                <a
+                  href="#"
+                  className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg font-semibold"
+                >
+                  <span>Speakers</span>
+                  <img src={rightArrow} alt="arrow" className="w-5 h-5" />
+                </a>
+                <div className="border-t border-gray-200" />
+
+                <a
+                  href="#"
+                  className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg font-semibold"
+                >
+                  <span>Doctors</span>
+                  <img src={rightArrow} alt="arrow" className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { Heart } from "lucide-react";
 import { ImageColumn } from "./components/ImageColumn";
 import { MobileImageScroll } from "./components/MobileImageScroll";
 import { MobileMenu } from "./components/MobileMenu";
@@ -8,15 +7,18 @@ import { LifestyleCards } from "./components/LifestyleCards";
 import GradientDivider from "./components/GradientDivider";
 // Import at top of file
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import Vector1 from "./assets/vectors/logo.png";
 
-const images = [
-  "https://images.unsplash.com/photo-1547496502-affa22d38842?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1574226516831-e1dff420e562?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=800&q=80",
-];
+import img1 from "./assets/images/first.jpg";
+import img2 from "./assets/images/second.jpg";
+import img3 from "./assets/images/third.jpg";
+import img4 from "./assets/images/fourth.jpg";
+import img5 from "./assets/images/fifth.jpg";
+import img6 from "./assets/images/sixth.jpg";
+import img7 from "./assets/images/seventh.jpg";
+import img8 from "./assets/images/eigth.jpg";
+
+const images = [img1, img2, img3, img4, img5, img6, img7, img8];
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,7 +45,11 @@ function App() {
         <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo - Left Side */}
           <div className="flex items-center gap-2">
-            <Heart className="w-6 h-6 md:w-8 md:h-8 text-primary" />
+            <img
+              src={Vector1}
+              alt="ProVital Logo"
+              className="w-6 h-6 md:w-8 md:h-8"
+            />{" "}
             <span className="text-lg md:text-xl font-bold">ProVital</span>
           </div>
 
@@ -104,8 +110,12 @@ function App() {
                           Doctor
                         </span>
                         <div className="flex gap-3">
-                          <span className="text-[#4384E6]">Login</span>
-                          <span className="text-[#4384E6]">Signup</span>
+                          <span className="text-[#4384E6] underline">
+                            Login
+                          </span>
+                          <span className="text-[#4384E6] underline">
+                            Signup
+                          </span>
                         </div>
                       </div>
                     </a>
@@ -116,8 +126,12 @@ function App() {
                           Patient
                         </span>
                         <div className="flex gap-3">
-                          <span className="text-[#4384E6]">Login</span>
-                          <span className="text-[#4384E6]">Signup</span>
+                          <span className="text-[#4384E6] underline">
+                            Login
+                          </span>
+                          <span className="text-[#4384E6] underline">
+                            Signup
+                          </span>
                         </div>
                       </div>
                     </a>
@@ -233,7 +247,6 @@ function App() {
                 </button>
               </div>
             </div>
-
             {/* Pill buttons */}
             <div className="flex gap-3 overflow-x-auto pb-6 mb-8">
               {[
@@ -256,7 +269,11 @@ function App() {
                 </button>
               ))}
             </div>
-            <div ref={cardsContainerRef} className="overflow-x-hidden">
+            // Update in App.tsx
+            <div
+              ref={cardsContainerRef}
+              className="overflow-x-hidden no-scrollbar"
+            >
               {/* Cards */}
               <LifestyleCards />
             </div>
