@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Heart } from "lucide-react";
 import { ImageColumn } from "./components/ImageColumn";
 import { MobileImageScroll } from "./components/MobileImageScroll";
@@ -6,6 +6,8 @@ import { MobileMenu } from "./components/MobileMenu";
 import { SearchBar } from "./components/SearchBar";
 import { LifestyleCards } from "./components/LifestyleCards";
 import GradientDivider from "./components/GradientDivider";
+// Import at top of file
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 
 const images = [
   "https://images.unsplash.com/photo-1547496502-affa22d38842?auto=format&fit=crop&w=800&q=80",
@@ -19,7 +21,22 @@ const images = [
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
 
+  const scroll = (direction: "left" | "right") => {
+    if (cardsContainerRef.current) {
+      const scrollAmount = 300; // Width of one card
+      const scrollPosition =
+        direction === "left"
+          ? cardsContainerRef.current.scrollLeft - scrollAmount
+          : cardsContainerRef.current.scrollLeft + scrollAmount;
+
+      cardsContainerRef.current.scrollTo({
+        left: scrollPosition,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden w-full">
       <header className="bg-white shadow-sm relative w-full z-50">
@@ -185,21 +202,36 @@ function App() {
         </section>
 
         {/* Lifestyle Cards Section */}
-        {/* Lifestyle Cards Section */}
         <section className="bg-gray-50 py-12">
           <div className="max-w-7xl mx-auto px-4">
-            {/* Section headers */}
-            <div className="text-left mb-8">
-              <h3 className="text-sm md:text-base font-semibold text-primary uppercase tracking-wider mb-2">
-                HOW IT WORKS
-              </h3>
-              {/* // Update h2 in App.tsx */}
-              <h2 className="text-lg md:text-2xl font-semibold font-inter">
-                <em className="text-gradient-secondary italic">
-                  Lifestyle as medicine:
-                </em>{" "}
-                The six pillars
-              </h2>
+            {/* Section headers with navigation arrows */}
+            <div className="flex justify-between items-center mb-8">
+              <div>
+                <h3 className="text-sm md:text-base font-semibold text-primary uppercase tracking-wider mb-2">
+                  HOW IT WORKS
+                </h3>
+                <h2 className="text-lg md:text-2xl font-semibold font-inter">
+                  <em className="text-gradient-secondary italic">
+                    Lifestyle as medicine:
+                  </em>{" "}
+                  The six pillars
+                </h2>
+              </div>
+              {/* Navigation Arrows */}
+              <div className="hidden md:flex items-center gap-3">
+                <button
+                  onClick={() => scroll("left")}
+                  className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-200"
+                >
+                  <IconArrowLeft size={20} />
+                </button>
+                <button
+                  onClick={() => scroll("right")}
+                  className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-200"
+                >
+                  <IconArrowRight size={20} />
+                </button>
+              </div>
             </div>
 
             {/* Pill buttons */}
@@ -224,9 +256,10 @@ function App() {
                 </button>
               ))}
             </div>
-
-            {/* Cards */}
-            <LifestyleCards />
+            <div ref={cardsContainerRef} className="overflow-x-hidden">
+              {/* Cards */}
+              <LifestyleCards />
+            </div>
           </div>
         </section>
       </main>
