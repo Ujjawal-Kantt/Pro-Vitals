@@ -27,8 +27,9 @@ function App() {
 
   const scroll = (direction: "left" | "right") => {
     if (cardsContainerRef.current) {
-      // Card width (400px) + gap (32px)
-      const scrollAmount = 432;
+      const cardWidth = 400; // Card width
+      const gap = 32; // Gap between cards (8 * 4 = 32px from gap-8)
+      const scrollAmount = cardWidth + gap;
 
       cardsContainerRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
@@ -271,7 +272,9 @@ function App() {
               className="overflow-x-hidden no-scrollbar scroll-smooth"
               style={{ scrollBehavior: "smooth" }}
             >
-              <LifestyleCards />
+              <div className="flex gap-8">
+                <LifestyleCards />
+              </div>{" "}
             </div>
           </div>
         </section>
