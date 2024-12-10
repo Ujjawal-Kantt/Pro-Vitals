@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+// MobileImageScroll.tsx
+import React, { useEffect, useRef } from "react";
 
 interface MobileImageScrollProps {
   images: string[];
@@ -17,12 +18,12 @@ export function MobileImageScroll({ images }: MobileImageScrollProps) {
 
     const animate = () => {
       if (!container) return;
-      
-      currentScroll += 0.5;
+
+      currentScroll += 1; // Increased speed
       if (currentScroll >= scrollWidth / 2) {
         currentScroll = 0;
       }
-      
+
       container.style.transform = `translateX(${-currentScroll}px)`;
       animationFrameId = requestAnimationFrame(animate);
     };
@@ -33,17 +34,20 @@ export function MobileImageScroll({ images }: MobileImageScrollProps) {
 
   return (
     <div className="overflow-hidden">
-      <div 
-        ref={scrollRef} 
-        className="flex gap-3 py-2"
-        style={{ willChange: 'transform' }}
+      <div
+        ref={scrollRef}
+        className="flex gap-4 py-2"
+        style={{
+          willChange: "transform",
+          transition: "transform 0.1s linear",
+        }}
       >
         {[...images, ...images].map((src, index) => (
-          <div key={index} className="flex-none w-[180px]">
+          <div key={index} className="flex-none w-[250px]">
             <img
               src={src}
               alt={`Lifestyle ${index + 1}`}
-              className="w-full aspect-[4/3] object-cover rounded-lg shadow-md"
+              className="w-full h-full object-cover rounded-lg shadow-md"
               loading="lazy"
             />
           </div>

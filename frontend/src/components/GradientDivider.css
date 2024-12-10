@@ -1,0 +1,32 @@
+/* Thin Gradient Divider Styling */
+.gradient-divider {
+  width: 100%; /* Full width */
+  height: 45px; /* Thin line */
+  background: linear-gradient(300.8deg, #E5688C 11.7%, #F0C971 63.17% ); /* Gradient line */
+  margin-top: 0px; /* Space between the upper section and the divider */
+  margin-bottom: 40px; /* Space between the divider and the next section */
+  opacity: 1; /* Fully visible */
+  transform: rotate(178.73deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .gradient-divider {
+    height: 35px; /* Adjust height for medium screens */
+    margin-bottom: 30px; /* Adjust bottom margin for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .gradient-divider {
+    height: 25px; /* Adjust height for small screens */
+    margin-bottom: 20px; /* Adjust bottom margin for small screens */
+  }
+}
+
+@media (max-width: 640px) {
+  .gradient-divider {
+    height: 20px; /* Adjust height for extra small screens */
+    margin-bottom: 15px; /* Adjust bottom margin for extra small screens */
+  }
+}

@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Add to index.css */
+@layer utilities {
+    .text-gradient {
+      background: linear-gradient(to right, #1173B3, #0CB9B3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+  }
+  @layer utilities {
+    .text-gradient-secondary {
+      background: linear-gradient(to right, #F1CA72, #D96E6C);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+  }
+  /* Add to index.css */
+@layer components {
+  .btn-gradient {
+    background: linear-gradient(to right, #4683D0, #7CD0A2);
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(to right, #3b6eb0, #65b588);
+    transform: translateY(-1px);
+  }
+}
+
