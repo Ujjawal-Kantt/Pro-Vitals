@@ -27,14 +27,11 @@ function App() {
 
   const scroll = (direction: "left" | "right") => {
     if (cardsContainerRef.current) {
-      const scrollAmount = 300; // Width of one card
-      const scrollPosition =
-        direction === "left"
-          ? cardsContainerRef.current.scrollLeft - scrollAmount
-          : cardsContainerRef.current.scrollLeft + scrollAmount;
+      // Card width (400px) + gap (32px)
+      const scrollAmount = 432;
 
-      cardsContainerRef.current.scrollTo({
-        left: scrollPosition,
+      cardsContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
       });
     }
@@ -248,7 +245,7 @@ function App() {
               </div>
             </div>
             {/* Pill buttons */}
-            <div className="flex gap-3 overflow-x-auto pb-6 mb-8">
+            <div className="flex gap-3 overflow-x-auto  no-scrollbar pb-6 mb-8">
               {[
                 "Nutrition",
                 "Physical Activity",
@@ -269,12 +266,11 @@ function App() {
                 </button>
               ))}
             </div>
-            // Update in App.tsx
             <div
               ref={cardsContainerRef}
-              className="overflow-x-hidden no-scrollbar"
+              className="overflow-x-hidden no-scrollbar scroll-smooth"
+              style={{ scrollBehavior: "smooth" }}
             >
-              {/* Cards */}
               <LifestyleCards />
             </div>
           </div>

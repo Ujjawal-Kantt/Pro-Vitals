@@ -71,7 +71,7 @@ const cards = [
 // Update LifestyleCards.tsx
 export function LifestyleCards() {
   return (
-    <div className="overflow-x-auto pb-8">
+    <div className="overflow-x-auto no-scrollbar pb-8">
       <div className="flex gap-8 min-w-max px-4">
         {" "}
         {/* Increased gap */}
