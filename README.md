@@ -11,7 +11,8 @@
 ## Tech Stack  
 - HTML  
 - CSS  
-- JavaScript  
+- JavaScript
+- TypeScript
 
 ## Getting Started  
 
