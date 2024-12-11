@@ -5,7 +5,6 @@ import { MobileMenu } from "./components/MobileMenu";
 import { SearchBar } from "./components/SearchBar";
 import { LifestyleCards } from "./components/LifestyleCards";
 import GradientDivider from "./components/GradientDivider";
-// Import at top of file
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import Vector1 from "./assets/vectors/logo.png";
 
@@ -27,8 +26,8 @@ function App() {
 
   const scroll = (direction: "left" | "right") => {
     if (cardsContainerRef.current) {
-      const cardWidth = 400; // Card width
-      const gap = 32; // Gap between cards (8 * 4 = 32px from gap-8)
+      const cardWidth = 400;
+      const gap = 32;
       const scrollAmount = cardWidth + gap;
 
       cardsContainerRef.current.scrollBy({
@@ -201,13 +200,12 @@ function App() {
                 </div>
 
                 {/* Mobile Image Scroll */}
-                <div className="md:hidden -mx-4 px-4 w-screen">
+                <div className="md:hidden -mx-4 px-4 w-screen relative z-20 -mt-10 ">
                   <MobileImageScroll images={images} />
                 </div>
               </div>
             </div>
           </div>
-
           <div className="relative z-10">
             <GradientDivider />
           </div>
@@ -269,7 +267,7 @@ function App() {
             </div>
             <div
               ref={cardsContainerRef}
-              className="overflow-x-hidden no-scrollbar scroll-smooth"
+              className="overflow-x-auto no-scrollbar scroll-smooth"
               style={{ scrollBehavior: "smooth" }}
             >
               <div className="flex gap-8">

@@ -12,15 +12,14 @@ export function MobileImageScroll({ images }: MobileImageScrollProps) {
     const container = scrollRef.current;
     if (!container) return;
 
-    const scrollWidth = container.scrollWidth;
-    let currentScroll = 0;
     let animationFrameId: number;
+    let currentScroll = 0;
 
     const animate = () => {
       if (!container) return;
 
-      currentScroll += 1; // Increased speed
-      if (currentScroll >= scrollWidth / 2) {
+      currentScroll += 1;
+      if (currentScroll >= container.scrollWidth / 2) {
         currentScroll = 0;
       }
 
@@ -28,19 +27,38 @@ export function MobileImageScroll({ images }: MobileImageScrollProps) {
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    animationFrameId = requestAnimationFrame(animate);
+    const onImagesLoaded = () => {
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const imgs = container.querySelectorAll("img");
+    let loadedCount = 0;
+    imgs.forEach((img) => {
+      if (img.complete) {
+        loadedCount += 1;
+      } else {
+        img.addEventListener("load", () => {
+          loadedCount += 1;
+          if (loadedCount === imgs.length) {
+            onImagesLoaded();
+          }
+        });
+      }
+    });
+
+    if (loadedCount === imgs.length) {
+      onImagesLoaded();
+    }
+
     return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  }, [images]);
 
   return (
     <div className="overflow-hidden">
       <div
         ref={scrollRef}
         className="flex gap-4 py-2"
-        style={{
-          willChange: "transform",
-          transition: "transform 0.1s linear",
-        }}
+        style={{ willChange: "transform" }}
       >
         {[...images, ...images].map((src, index) => (
           <div key={index} className="flex-none w-[250px]">
@@ -48,7 +66,6 @@ export function MobileImageScroll({ images }: MobileImageScrollProps) {
               src={src}
               alt={`Lifestyle ${index + 1}`}
               className="w-full h-full object-cover rounded-lg shadow-md"
-              loading="lazy"
             />
           </div>
         ))}
